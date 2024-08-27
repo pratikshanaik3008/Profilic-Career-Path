@@ -1,0 +1,16 @@
+question,opt1,opt2,opt3,label
+ Which aspect of study intrigues you the most,1,0,0,1
+What area of study sparks your curiosity,0,1,0,2
+Where do you envision your future career,1,0,0,1
+What type of coursework are you most interested in,0,1,0,2
+Which field aligns best with your career aspirations,0,0,1,3
+What aspect of study are you most passionate about,0,1,0,2
+In which area of study do you see yourself excelling,1,0,0,1
+What aspect of study are you most interested in contributing to,1,0,0,1
+Which field of study do you find most intellectually stimulating,0,1,0,2
+What aspect of study do you find challenging yet rewarding,0,0,1,3
+ In which field of study do you believe you can make the most impact,0,0,1,3
+Which area of study aligns best with your skill set,1,0,0,1
+What aspect of study are you most enthusiastic about exploring in-depth,0,1,0,2
+Which area of study are you most drawn to for further exploration,1,0,0,1
+What aspect of study do you see yourself enjoying the most,0,0,1,3

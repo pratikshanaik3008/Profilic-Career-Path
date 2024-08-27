@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="container mt-5 p-5">
+            <h2 class="text-bolder">Thank you for the test!!</h2>
+            <h2 class="text-bolder">Summary of your responses</h2>
+
+            <div class="row g-3 mt-4">
+                <div class="col-md-4">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">Extrovertness</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{exo}} %</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">Multi Tasking</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{multi}} %</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">Hard Working</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{hard}} %</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-sm mt-3">
+                <p class="fw-bold fs-4">Based on your responses</p>
+                <div class="card text-white bg-success mb-3 text-start p-4">
+                    {% if is_exo %}
+                        <p class="fw-bold fs-5">Your are Extrovert!!</p>
+                    {% endif %}
+                    {% if is_multi %}
+                        <p class="fw-bold fs-5">You love to do multiple task at a time!!</p>
+                    {% endif %}
+                    {% if is_hard %}
+                        <p class="fw-bold fs-5">You are hard working!!</p>
+                    {% endif %}
+                </div>
+                <a href="{% url 'index' %}" class="btn btn-danger">Return Home</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

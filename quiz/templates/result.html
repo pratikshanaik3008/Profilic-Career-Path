@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="container mt-5 p-5">
+            <h2 class="text-bolder">Thank you for the test!!</h2>
+            <h2 class="text-bolder">Summary of your responses</h2>
+
+
+
+                    <div class="row g-3 mt-4" id="x">
+                        <div class="col-md-4" id="commerceCard">
+                            <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                                <div class="card-header text-success">Commerce</div>
+                                <div class="card-body text-success">
+                                    <h5 class="card-title">{{ comm }} %</h5>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-4" id="y">
+                            <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                                <div class="card-header text-success">Arts</div>
+                                <div class="card-body text-success">
+                                    <h5 class="card-title">{{ arts }} %</h5>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+
+                    <div class="row g-3 mt-4" id="z">
+                        <div class="col-md-4" id="scienceCard">
+                            <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                                <div class="card-header text-success">Science</div>
+                                <div class="card-body text-success">
+                                    <h5 class="card-title">{{ science }} %</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- for ML -->
+                    <script>
+                        // Function to hide a card if its value is equal to "0%"
+                        function hideIfValueIsZero(elementId, value) {
+                            var element = document.getElementById(elementId);
+                    
+                            if (value === "0%") {
+                                element.style.display = "none";
+                            }
+                        }
+                    
+                        // Call the function for Science 
+                        hideIfValueIsZero("scienceCard", "{{ science|stringformat:'s' }}");
+                    
+                        // Call the function for Commerce 
+                        hideIfValueIsZero("commerceCard", "{{ comm|stringformat:'s' }}");
+                    
+                        // Call the function for Arts 
+                        hideIfValueIsZero("y", "{{ arts|stringformat:'s' }}");
+                    </script>
+                    <!-- For ML end -->
+
+
+
+                   <!-- For Without Ml -->
+                    <!-- <script>
+                        // Function to hide cards except the one with the highest value
+                        function displayHighestValueCard() {
+                            var scienceValue = parseFloat("{{ science|stringformat:'s' }}");
+                            var commerceValue = parseFloat("{{ comm|stringformat:'s' }}");
+                            var artsValue = parseFloat("{{ arts|stringformat:'s' }}");
+                    
+                            var scienceCard = document.getElementById("scienceCard");
+                            var commerceCard = document.getElementById("commerceCard");
+                            var artsCard = document.getElementById("y");
+                    
+                            var maxValue = Math.max(scienceValue, commerceValue, artsValue);
+                    
+                            if (scienceValue === maxValue) {
+                                commerceCard.style.display = "none";
+                                artsCard.style.display = "none";
+                            } else if (commerceValue === maxValue) {
+                                scienceCard.style.display = "none";
+                                artsCard.style.display = "none";
+                            } else {
+                                scienceCard.style.display = "none";
+                                commerceCard.style.display = "none";
+                            }
+                        }
+                    
+                        // Call the function to display the card with the highest value
+                        displayHighestValueCard();
+                    </script> -->
+                    <!-- For Without ML End -->
+                  
+                    
+
+
+
+               
+                
+
+
+            </div>
+            <div class="container-sm mt-3" id="resultContainer">
+                <p class="fw-bold fs-4">Based on your responses</p>
+                <div class="card text-white bg-success mb-3 text-start p-4" id="responseCard">
+                </div>
+                <a href="#" onclick="returnHome()" class="btn btn-danger">Return Home</a>
+            </div>
+            
+            <script>
+              function generateResponse() {
+   
+   var responseCard = document.getElementById("responseCard");
+
+   var responseText = "";
+   if ("{{ science|stringformat:'s' }}" === "100%") {
+    responseText = "<p class='fw-bold fs-5'>Your interest is in Science field and it suits you!!</p>";
+   }
+   if ("{{ comm|stringformat:'s' }}"=== "100%") {
+    responseText = "<p class='fw-bold fs-5'>Your interest is in Commerce field and it suits you!!</p>";
+   }
+   if ("{{ arts|stringformat:'s' }}"=== "100%") {
+    responseText = "<p class='fw-bold fs-5'>Your interest is in Arts field and it suits you!!</p>";
+   }
+
+   // Update the card content
+   responseCard.innerHTML = responseText;
+}
+
+// Call the function to generate response
+generateResponse();
+
+function returnHome() {
+
+alert("Returning home...");
+
+return false;
+}
+            </script>
+            
+        </div>
+    </div>
+{% endblock %}

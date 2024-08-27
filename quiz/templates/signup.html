@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% block title %} Registration  {%endblock%}
+{% load static %}
+
+
+   {%block content%}
+
+      <br><br>
+      <style>
+          /* Add custom styles for animation and background image */
+          body {
+              background-image: url("{% static '' %}");
+              background-size: cover;
+              background-position: center;
+              font-family: 'Roboto', sans-serif;
+              color: #333; /* Dark text color for better readability */
+          }
+  
+          .animated-form {
+              transition: transform 0.3s ease;
+          }
+  
+          .form-hidden {
+              transform: translateY(-100%);
+          }
+  
+          .card {
+              background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for card */
+              border-radius: 15px; /* Rounded corners for the card */
+              box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+              border: 2px solid #000; /* Black border */
+              background-color: rgba(255, 255, 255, 0.7); /* Increase alpha value for more transparency */
+               border: 2px solid #000; /* Black border */
+
+          }
+  
+          .card-header {
+              background-color: #fff; /* White background for card header */
+              border-bottom: none; /* Remove border bottom */
+          }
+  
+          .card-body {
+              padding: 30px; /* Add padding for content */
+          }
+  
+          .btn-primary {
+              background-color: #4CAF50; /* Green color for primary button */
+              border: bold; /* Remove button border */
+              transition: background-color 0.3s ease; /* Smooth transition on hover */
+          }
+  
+          .btn-primary:hover {
+              background-color: #45a049; /* Darker green on hover */
+          }
+  
+          label {
+              font-weight: bold; /* Bold labels */
+          }
+          input.form-control:focus {
+               border-color: #4CAF50; /* Change border color to green */
+               box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25); /* Add a subtle green shadow */
+           }
+           /* Add custom styles for button */
+           .btn-register {
+               background-color: #4CAF50; /* Green color for button */
+               border: none; /* Remove button border */
+               color: BLACK; /* Text color */
+               padding: 20px 30px; /* Padding for button */
+               font-size: 20px; /* Font size */
+               cursor: pointer; /* Cursor style */
+               transition: background-color 0.3s ease; /* Smooth transition on hover */
+           }
+       
+           .btn-register:hover {
+               background-color: #45a049; /* Darker green color on hover */
+           }
+           /* Add animation to button */
+           @keyframes fadeIn {
+               from {
+                   opacity: 0;
+               }
+               to {
+                   opacity: 1;
+               }
+           }
+       
+           .animated-button {
+               animation: fadeIn 0.5s ease-in-out;
+           }
+           @keyframes fadeIn {
+               from {
+                   opacity: 0;
+                   transform: translateY(50px); /* Move image downwards */
+               }
+               to {
+                   opacity: 1;
+                   transform: translateY(0); /* Move image to its original position */
+               }
+           }
+       
+           .animated-image {
+               animation: fadeIn 1s ease-in-out; /* Apply fadeIn animation to the image */
+           }
+          
+      </style>
+  
+      <div class="container">
+          <div class="row justify-content-center mt-5">
+              <!-- Image Column -->
+              <div class="col-md-6 order-md-2">
+               <div class="d-flex justify-content-center align-items-center h-100">
+                   <img src="{% static "c8.jpg" %}" class="img-fluid animated-image" style="max-width: 80%; max-height: 80%; height:400px; width:auto;" alt="Image">
+               </div>
+           </div>
+              <!-- Form Column -->
+              <div class="col-md-6 order-md-1">
+                  <div class="card animated-form form-hidden">
+                      <div class="card-header">
+                          <h3 class="text-center" style="font-size:30px;">REGISTRED HERE!!</h3>
+                      </div>
+                      <div class="card-body">
+                          <form action="{% url "signup" %}" method="POST">
+                              {% csrf_token %}
+                              <div class="form-group">
+                                  <label for="name">Username (Firstname Lastname)</label>
+                                  <input type="text" class="form-control" id="name" name="name" required>
+                              </div>
+                             
+                              <div class="form-group">
+                                  <label for="email">Email</label>
+                                  <input type="email" class="form-control" id="email" name="email" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="pass1">Password</label>
+                                  <input type="password" class="form-control" id="password" name="pass1" required>
+                              </div><br>
+                              <div class="form-group">
+                                <label for="pass2">Confirm Password</label>
+                                <input type="password" class="form-control" id="password" name="pass2" required>
+                            </div>
+                                <center>
+                                   <button type="submit" class="btn btn-register btn-block animated-button">Register</button>
+                                </center>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script>
+          $(document).ready(function(){
+              // Show the form with animation when page loads
+              $(".animated-form").removeClass("form-hidden");
+  
+              // You can add more interactions or animations as needed
+          });
+      </script>
+<br>
+<br>
+
+  {% endblock %}

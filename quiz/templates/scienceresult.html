@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="container mt-5 p-5">
+            <h2 class="text-bolder">Thank you for the test!!</h2>
+            <h2 class="text-bolder">Summary of your responses</h2>
+
+            <div class="row g-3 mt-4">
+                <div class="col-md-4" id="BscCard">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">BSC</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{BSC}} %</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" id="EngCard">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">Engineering</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{Eng}} %</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" id="MedCard">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">Medical</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{Med}} %</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- for ML -->
+            <script>
+                // Function to hide a card if its value is equal to "0%"
+                function hideIfValueIsZero(elementId, value) {
+                    var element = document.getElementById(elementId);
+            
+                    if (value === "0") {
+                        element.style.display = "none";
+                    }
+                }
+            
+                // Call the function for Science 
+                hideIfValueIsZero("BscCard", "{{ BSC|stringformat:'s' }}");
+            
+                // Call the function for Commerce 
+                hideIfValueIsZero("EngCard", "{{ Eng|stringformat:'s' }}");
+            
+                // Call the function for Arts 
+                hideIfValueIsZero("MedCard", "{{ Med|stringformat:'s' }}");
+            </script>
+            <!-- For ML end -->
+            <div class="container-sm mt-3" id="resultContainer">
+                <p class="fw-bold fs-4">Based on your responses</p>
+                <div class="card text-white bg-success mb-3 text-start p-4" id="responseCard">
+                </div>
+                <a href="#" onclick="returnHome()" class="btn btn-danger">Return Home</a>
+            </div>
+            
+            <script>
+                // Define the logic conditions (is_BSC, is_Eng, is_Med) here. For demonstration, let's assume these are boolean variables.
+                var is_BSC = true; // Change these values based on your actual logic.
+                var is_Eng = false;
+                var is_Med = false;
+            
+                // Get references to the container and card elements
+                var resultContainer = document.getElementById("resultContainer");
+                var responseCard = document.getElementById("responseCard");
+            
+                // Function to generate response based on conditions
+                function generateResponse() {
+                    var responseText = "";
+                    if (is_BSC) {
+                        responseText = "<p class='fw-bold fs-5'>Your interest is in BSC field and it suits you!!</p>";
+                    }
+                    if (is_Eng) {
+                        responseText = "<p class='fw-bold fs-5'>Your interest is in Engineering field and it suits you!!</p>";
+                    }
+                    if (is_Med) {
+                        responseText = "<p class='fw-bold fs-5'>Your interest is in Medical field and it suits you!!</p>";
+                    }
+                    // Update the card content
+                    responseCard.innerHTML = responseText;
+                }
+            
+                // Call the function to generate response
+                generateResponse();
+            
+                // Function to handle returning home
+                function returnHome() {
+                    // Implement your return home logic here, for demonstration, I'm just alerting
+                    alert("Returning home...");
+                    // Prevent the default action of the link
+                    return false;
+                }
+            </script>
+            
+        </div>
+    </div>
+{% endblock %}

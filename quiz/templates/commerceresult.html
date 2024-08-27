@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="container mt-5 p-5">
+            <h2 class="text-bolder">Thank you for the test!!</h2>
+            <h2 class="text-bolder">Summary of your responses</h2>
+
+            <div class="row g-3 mt-4">
+                <div class="col-md-4"id="CACard">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">CA</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{CA}} %</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"id="CMACard">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">CMA</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{CMA}} %</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"id="BCOMCard">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">BCOM</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{BCOM}} %</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-sm mt-3" id="resultContainer">
+                <p class="fw-bold fs-4">Based on your responses</p>
+                <div class="card text-white bg-success mb-3 text-start p-4" id="responseCard">
+                </div>
+                <a href="#" onclick="returnHome()" class="btn btn-danger">Return Home</a>
+            </div>
+
+        </div>
+    </div>
+    <script>
+
+function hideIfValueIsZero(elementId, value) {
+            var element = document.getElementById(elementId);
+    
+            if (value === "0") {
+                element.style.display = "none";
+            }
+        }
+    
+        // Call the function for Science 
+        hideIfValueIsZero("CACard", "{{ CA|stringformat:'s' }}");
+    
+        // Call the function for Commerce 
+        hideIfValueIsZero("CMACard", "{{ CMA|stringformat:'s' }}");
+    
+        // Call the function for Arts 
+        hideIfValueIsZero("BCOMCard", "{{ BCOM|stringformat:'s' }}");
+
+
+    //  for dynamic wrting 
+     function generateResponse() {
+   
+   var responseCard = document.getElementById("responseCard");
+
+   var responseText = "";
+   if ("{{ CA|stringformat:'s' }}" === "100") {
+       responseText = "<p class='fw-bold fs-5'>Your interest is in Charted Accounted field and it suits you!!</p>";
+   }
+   if ("{{ CMA|stringformat:'s' }}"=== "100") {
+       responseText += "<p class='fw-bold fs-5'>Your interest is in CMA field and it suits you!!</p>";
+   }
+   if ("{{ BCOM|stringformat:'s' }}"=== "100") {
+       responseText += "<p class='fw-bold fs-5'>Your interest is in Bachlors Of Commarce field and it suits you!!</p>";
+   }
+
+   // Update the card content
+   responseCard.innerHTML = responseText;
+}
+
+// Call the function to generate response
+generateResponse();
+
+function returnHome() {
+
+alert("Returning home...");
+
+return false;
+}
+    </script>
+{% endblock %}

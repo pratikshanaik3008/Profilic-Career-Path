@@ -1,0 +1,17 @@
+question,opt1,op2,op3,label
+What subjects do you enjoy the most,1,0,0,1
+What activities do you find most engaging,0,0,1,2
+What do you spend your free time doing,1,0,0,1
+What are your strongest skills,1,0,0,1
+What kind of challenges do you enjoy tackling,1,0,0,1
+What do you hope to achieve in your career,0,0,1,2
+What type of learning environment do you prefer,1,0,0,3
+What values are important to you in a career,0,0,1,2
+What kind of impact do you want to make,0,1,0,1
+What industries are you interested in,0,0,1,3
+What future trends intrigue you,1,0,0,3
+ What role do you see yourself in within a team,1,0,0,1
+What motivates you to excel,0,0,1,2
+What kind of work-life balance do you desire,0,1,0,3
+What do you enjoy learning about beyond the classroom,0,0,1,2
+What subjects do you enjoy the most,0,1,0,2

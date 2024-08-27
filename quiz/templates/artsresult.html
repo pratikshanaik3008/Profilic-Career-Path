@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="container mt-5 p-5">
+            <h2 class="text-bolder">Thank you for the test!!</h2>
+            <h2 class="text-bolder">Summary of your responses</h2>
+
+            <div class="row g-3 mt-4">
+                <div class="col-md-4"  id="BaCard">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">BA</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{BA}} %</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"  id="BswCard">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">BSW</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{BSW}} %</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"  id="BfaCard">
+                    <div class="card text-white border-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-success">BFA</div>
+                        <div class="card-body text-success">
+                        <h5 class="card-title">{{BFA}} %</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="container-sm mt-3" id="resultContainer">
+                <p class="fw-bold fs-4">Based on your responses</p>
+                <div class="card text-white bg-success mb-3 text-start p-4" id="responseCard">
+                </div>
+                <a href="#" onclick="returnHome()" class="btn btn-danger">Return Home</a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        // Function to hide a card if its value is equal to "0%"
+        function hideIfValueIsZero(elementId, value) {
+            var element = document.getElementById(elementId);
+    
+            if (value === "0") {
+                element.style.display = "none";
+            }
+        }
+    
+        // Call the function for Science 
+        hideIfValueIsZero("BaCard", "{{ BA|stringformat:'s' }}");
+    
+        // Call the function for Commerce 
+        hideIfValueIsZero("BswCard", "{{ BSW|stringformat:'s' }}");
+    
+        // Call the function for Arts 
+        hideIfValueIsZero("BfaCard", "{{ BFA|stringformat:'s' }}");
+
+
+// function generateResponse() {
+// var is_BA = document.getElementById("BaCard").value.toString();
+// var is_BSW = document.getElementById("BswCard").value;
+// var is_BFA = document.getElementById("BfaCard").value;
+
+// // Get references to the card element
+// var responseCard = document.getElementById("responseCard");
+
+// var responseText = "";
+// if (is_BA == "100") {
+//     responseText = "<p class='fw-bold fs-5'>Your interest is in Bachelor of Arts field and it suits you!!</p>";
+// }
+// if (is_BSW == "100") {
+//     responseText += "<p class='fw-bold fs-5'>Your interest is in BSW field and it suits you!!</p>";
+// }
+// if (is_BFA == "100") {
+//     responseText += "<p class='fw-bold fs-5'>Your interest is in BFA field and it suits you!!</p>";
+// }
+
+
+// responseCard.innerHTML = responseText;
+// }
+
+// generateResponse();
+
+
+function generateResponse() {
+   
+    var responseCard = document.getElementById("responseCard");
+
+    var responseText = "";
+    if ("{{ BA|stringformat:'s' }}" === "100") {
+        responseText = "<p class='fw-bold fs-5'>Your interest is in Bachelor of Arts field and it suits you!!</p>";
+    }
+    if ("{{ BSW|stringformat:'s' }}"=== "100") {
+        responseText += "<p class='fw-bold fs-5'>Your interest is in BSW field and it suits you!!</p>";
+    }
+    if ("{{ BFA|stringformat:'s' }}"=== "100") {
+        responseText += "<p class='fw-bold fs-5'>Your interest is in BFA field and it suits you!!</p>";
+    }
+
+    // Update the card content
+    responseCard.innerHTML = responseText;
+}
+
+// Call the function to generate response
+generateResponse();
+
+function returnHome() {
+
+alert("Returning home...");
+
+return false;
+}
+</script>
+{% endblock %}
